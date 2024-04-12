@@ -1,6 +1,5 @@
 %% AA279C HW 1
 % Natasha Evans
-% SUID: 06743290
 
 %% Spacecraft dimensions and masses
 % Central structure dimensions
