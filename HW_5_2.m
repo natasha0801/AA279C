@@ -5,8 +5,8 @@ load orbitGeometry;
 [r_sun, v_sun] = planetEphemeris(juliandate(2014,9,21), 'Mars', 'Sun');
 
 % Make sure reference frame is consistent w/ the rest of this program!
-[a, e, i, raan, argp, trueAnomaly] = mci2oe(r_sun, v_sun);
-[sunVectorMCI, sunVelocityECI] = oe2mci(a,e,i,raan,argp,trueAnomaly);
+[as, es, is, raans, argps, trueAnomalys] = mci2oe(r_sun, v_sun);
+[sunVectorMCI, sunVelocityECI] = oe2mci(as,es,is,raans,argps,trueAnomalys);
 sunVectorMCI = sunVectorMCI / norm(sunVectorMCI);       % unit vector
 save orbitGeometry; clear; clc;
 
