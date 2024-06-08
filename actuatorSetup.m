@@ -142,18 +142,25 @@ eul = subs(eul, Iw*wd3, Mcz);
 disp("Euler Equations (Substituting Actuator Moment): ")
 disp(eul)
 
-syms kpx kpy kpz kdx kdy kdz
-eul = subs(eul, Mcx, kpx*ax + kdx*adx);
-eul = subs(eul, Mcy, kpy*ay + kdy*ady);
-eul = subs(eul, Mcz, kpz*az + kdz*adz);
+load orbitGeometry orbitDuration
+load inertiaTensors
+freq = 40; meanMotion = 2*pi/orbitDuration;
+damping = 1/sqrt(3);
+kp = [Ixx; Iyy; Izz] * (freq*meanMotion).^2;
+kd = [Ixx; Iyy; Izz] * 2*damping*(freq*meanMotion);
+disp("kp: ")
+disp(kp)
+disp("kd: ")
+disp(kd)
 
-disp("Linear control law: ")
-pretty(simplify(eul))
+
 %% Actuator Functions
 function [torque, thrust] = Thrusters(Mc)
     load thrusterGeometry
+    
     maxThrust = 1; minThrust = 0;       % N
-    thrust = pinv(A_thrusters) * Mc;
+    thrust = pinv(A_thrusters) * Mc;    % N
+    thrust = thrust .* (1 + 0.01 * randn(4,1));    % actuator error
 
     % Limit for saturation
     if max(thrust) > maxThrust
