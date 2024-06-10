@@ -1,0 +1,12 @@
+To run final project:
+ - FinalProject.m contains main code. Execute the entire file to simulate the orbit for 10 minutes.
+ - To change initial attitude, set q0 on line 19.
+ - To change initial angular velocity, set w0_principal on line 11.
+ - To change simulation duration, set the limits of t on line 24. 
+   (The simulation has been tested for up to 3600 seconds, but the runtime is significant.)
+
+Additional Files:
+ - actuatorSetup.m sets properties for the reaction wheels and thrusters. 
+   It is not recommended to change their geometry, but scalar properties (such as max speed, thrust, moment of inertia)
+   can be modified.
+ - All additional files contain simulation settings generated from previous PSETS.
